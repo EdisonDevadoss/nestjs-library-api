@@ -15,7 +15,6 @@ import { ApiCreatedResponse } from '@nestjs/swagger';
 import { HttpExceptionFilter } from '../common/filters/http-exception.filter';
 import { CreateBookDto } from './dto';
 import { BookService } from './books.service';
-import { Book } from './interface';
 
 @Controller('books')
 @UseFilters(new HttpExceptionFilter())

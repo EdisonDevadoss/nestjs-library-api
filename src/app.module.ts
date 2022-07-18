@@ -12,7 +12,12 @@ import { PrismaModule } from './prisma/prisma.module';
 import { UsersModule } from './users/users.module';
 
 @Module({
-  imports: [ConfigModule.forRoot({ isGlobal: true }), BookModule, PrismaModule, UsersModule],
+  imports: [
+    ConfigModule.forRoot({ isGlobal: true }),
+    BookModule,
+    PrismaModule,
+    UsersModule,
+  ],
   // controllers: [AppController],
   // providers: [PrismaService],
   // exports: [],
