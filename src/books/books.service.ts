@@ -1,5 +1,4 @@
 import { Injectable } from '@nestjs/common';
-import { Prisma } from '@prisma/client';
 
 import { Book } from './interface';
 import { CreateBookDto } from './dto';
@@ -15,7 +14,7 @@ export class BookService {
     // return this.books.push(book);
   }
 
-  findAll(): Book[] {
-    return this.books;
+  async findAll() {
+    return await this.prisma.book.findMany();
   }
 }

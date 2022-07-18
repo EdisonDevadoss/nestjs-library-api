@@ -10,6 +10,8 @@ import {
   ParseIntPipe,
 } from '@nestjs/common';
 import { Request } from 'express';
+import { ApiCreatedResponse } from '@nestjs/swagger';
+
 import { HttpExceptionFilter } from '../common/filters/http-exception.filter';
 import { CreateBookDto } from './dto';
 import { BookService } from './books.service';
@@ -20,15 +22,19 @@ import { Book } from './interface';
 export class BooksController {
   constructor(private bookServer: BookService) {}
   @Post()
+  @ApiCreatedResponse({
+    description: 'The record has been successfully created',
+    type: CreateBookDto,
+  })
   create(@Body() createBookDto: CreateBookDto) {
     console.log('createBookDto', createBookDto);
     return this.bookServer.create(createBookDto);
   }
 
   @Get()
-  async getAll(@Req() request: Request): Promise<Book[]> {
+  async getAll(@Req() request: Request) {
     // console.log('request is', request);
-    throw new ForbiddenException();
+    // throw new ForbiddenException();
     return this.bookServer.findAll();
   }
 
