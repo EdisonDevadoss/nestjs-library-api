@@ -11,11 +11,13 @@ datasource db {
 }
 
 model User {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
-  name  String?
+  id        Int     @id @default(autoincrement())
+  email     String  @unique
+  hash      String?
+  name      String?
   mobile_no String?
-  Book  Book[]
+  role      String
+  Book      Book[]
 }
 
 model Book {
@@ -26,6 +28,6 @@ model Book {
   amount           Decimal?
   date_of_purchase DateTime?
   is_read          Boolean
-  user             User     @relation(fields: [created_by], references: [id])
+  user             User      @relation(fields: [created_by], references: [id])
   created_by       Int
 }

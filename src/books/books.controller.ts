@@ -8,16 +8,19 @@ import {
   UseFilters,
   ForbiddenException,
   ParseIntPipe,
+  UseGuards,
 } from '@nestjs/common';
 import { Request } from 'express';
 import { ApiCreatedResponse } from '@nestjs/swagger';
+import { JwtAuthGuard } from '../auth/guard/jwt-auth.guard';
 
-import { HttpExceptionFilter } from '../common/filters/http-exception.filter';
+// import { HttpExceptionFilter } from '../common/filters/http-exception.filter';
 import { CreateBookDto } from './dto';
 import { BookService } from './books.service';
 
+@UseGuards(JwtAuthGuard)
 @Controller('books')
-@UseFilters(new HttpExceptionFilter())
+// @UseFilters(new HttpExceptionFilter())
 export class BooksController {
   constructor(private bookServer: BookService) {}
   @Post()
