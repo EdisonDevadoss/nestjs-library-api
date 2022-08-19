@@ -37,7 +37,7 @@ export class BooksController {
   async getAll(@Req() request: Request) {
     // console.log('request is', request);
     // throw new ForbiddenException();
-    return this.bookServer.findAll();
+    return this.bookServer.findAll(request.query);
   }
 
   @Get(':id')
